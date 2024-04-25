@@ -55,7 +55,7 @@ int main() {
     int rows = 10000;
     int cols = 10000;
 
-    std::vector<std::vector<int>> data = randomArrData(rows, cols);
+    std::vector<std::vector<int>> array = randomArrData(rows, cols);
 
     int totalSum;
     std::pair<int, int> minRowSum;
@@ -67,9 +67,9 @@ int main() {
 #pragma omp parallel sections
     {
 #pragma omp section
-        { totalSum = calculateTotalSum(data); }
+        { totalSum = calculateTotalSum(array); }
 #pragma omp section
-        { minRowSum = findRowWithMinSum(data); }
+        { minRowSum = findRowWithMinSum(array); }
     }
 
     double time_elapsed = omp_get_wtime() - start_time;
